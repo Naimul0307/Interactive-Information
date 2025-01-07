@@ -139,8 +139,25 @@ function closeModal() {
   video.pause();
 }
 
+// Function to handle the close button interaction for both mouse and touch
+function setupCloseModalButton() {
+  const closeButton = document.querySelector('.close-btn');
+
+  // Mouse click listener
+  closeButton.addEventListener('click', closeModal);
+
+  // Touch end listener
+  closeButton.addEventListener('touchend', (e) => {
+    e.preventDefault(); // Prevent default touch behavior
+    closeModal(); // Close modal on touch end
+  });
+}
+
 // Load video buttons on page load
-document.addEventListener('DOMContentLoaded', loadVideoButtons);
+document.addEventListener('DOMContentLoaded', () => {
+  loadVideoButtons();
+  setupCloseModalButton(); // Setup close button for both touch and mouse
+});
 
 // Enable drop on the bin (works for both mouse and touch)
 const bin = document.getElementById('bin');
