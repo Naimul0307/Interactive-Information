@@ -108,55 +108,11 @@ function drop(e) {
 
 // Function to play a video
 function playVideo(videoName) {
-  const modal = document.getElementById('videoModal');
-  const video = document.getElementById('infoVideo');
-  const source = document.getElementById('videoSource');
-
-  // Ensure video is loaded correctly
-  source.src = `videos/${videoName}`;
-  video.load();
-  
-  // Play video after a small delay (simulate user interaction)
-  setTimeout(() => {
-    video.play();
-  }, 100);
-
-  // Open modal and play video
-  modal.style.display = 'flex';
-
-  // Add event listener to redirect after video ends
-  video.addEventListener('ended', function() {
-    window.location.href = 'index.html'; // Redirect to index.html after video ends
-  });
+  window.location.href = `videos.html?video=${encodeURIComponent(videoName)}`;
 }
-
-// Function to close the modal
-function closeModal() {
-  const modal = document.getElementById('videoModal');
-  const video = document.getElementById('infoVideo');
-
-  modal.style.display = 'none';
-  video.pause();
-}
-
-// Function to handle the close button interaction for both mouse and touch
-function setupCloseModalButton() {
-  const closeButton = document.querySelector('.close-btn');
-
-  // Mouse click listener
-  closeButton.addEventListener('click', closeModal);
-
-  // Touch end listener
-  closeButton.addEventListener('touchend', (e) => {
-    e.preventDefault(); // Prevent default touch behavior
-    closeModal(); // Close modal on touch end
-  });
-}
-
 // Load video buttons on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadVideoButtons();
-  setupCloseModalButton(); // Setup close button for both touch and mouse
 });
 
 // Enable drop on the bin (works for both mouse and touch)
