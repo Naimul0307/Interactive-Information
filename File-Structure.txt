@@ -1,0 +1,14 @@
+Interactive Information Application/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── scripts.js
+│   ├── videos/
+│       ├── video1.mp4
+│       └── video2.mp4
+├── server.js
+├── package.json
+└── node_modules/
