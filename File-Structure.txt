@@ -1,11 +1,14 @@
 Interactive Information Application/
 ├── public/
 │   ├── index.html
+│   ├── videos.html
 │   ├── favicon.ico
 │   ├── css/
 │   │   └── styles.css
+│   │   └── videos.css
 │   ├── js/
 │   │   └── scripts.js
+│   │   └── videos.js
 │   ├── videos/
 │       ├── video1.mp4
 │       └── video2.mp4

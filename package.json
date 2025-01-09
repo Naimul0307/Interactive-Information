@@ -1,6 +1,17 @@
 {
-"dependencies": {
-  "express": "^4.18.2",
-  "helmet": "^6.0.1"
-}
+  "name": "interactive-information",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "concurrently -k \"node server.js\" \"electron .\""
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "electron": "^33.3.1",
+    "express": "^4.18.2",
+    "helmet": "^6.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
 }

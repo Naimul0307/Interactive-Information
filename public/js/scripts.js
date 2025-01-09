@@ -1,12 +1,52 @@
 let firstTouchInteraction = true; // Flag to track the first touch interaction
 
 // Function to fetch videos dynamically and create buttons
+// function loadVideoButtons() {
+//   // fetch('/videos')
+//   //   .then(response => response.json())
+//   //   .then(videos => {
+//   //     const buttonsContainer = document.getElementById('floating-buttons');
+//   //     buttonsContainer.innerHTML = ''; // Clear any existing buttons
+
+//   //     // Generate dynamic video buttons
+//   //     videos.forEach((video, index) => {
+//   //       const button = document.createElement('button');
+//   //       button.textContent = video.split('.')[0]; // Use the video file name as button text
+//   //       button.className = 'float-btn';
+//   //       button.draggable = true;
+//   //       button.id = `video-btn-${index}`; // Add unique ID
+//   //       button.setAttribute('data-video', video);
+
+//   //       // Add event listeners for both mouse and touch interactions
+//   //       button.addEventListener('dragstart', (e) => drag(e)); // Mouse drag
+//   //       button.addEventListener('touchstart', (e) => touchStart(e)); // Touch start
+        
+//   //       buttonsContainer.appendChild(button);
+//   //     });
+//   //   })
+//   //   .catch(error => console.error('Error loading videos:', error));
+
+//   fetch('http://localhost:5003/videos')
+//   .then(response => response.json())
+//   .then(videos => {
+//     console.log('Fetched videos:', videos); // Check if the videos are being fetched correctly
+//     loadVideoButtons(videos);
+//   })
+//   .catch(error => {
+//     console.error('Error loading videos:', error);
+//   });
+
+// }
+
+
+// Function to fetch videos dynamically and create buttons
 function loadVideoButtons() {
-  fetch('/videos')
+  fetch('http://localhost:5003/videos')  // Fetching video data from server
     .then(response => response.json())
     .then(videos => {
+      console.log('Fetched videos:', videos);  // Check if the videos are being fetched correctly
       const buttonsContainer = document.getElementById('floating-buttons');
-      buttonsContainer.innerHTML = ''; // Clear any existing buttons
+      buttonsContainer.innerHTML = '';  // Clear any existing buttons
 
       // Generate dynamic video buttons
       videos.forEach((video, index) => {
@@ -14,18 +54,21 @@ function loadVideoButtons() {
         button.textContent = video.split('.')[0]; // Use the video file name as button text
         button.className = 'float-btn';
         button.draggable = true;
-        button.id = `video-btn-${index}`; // Add unique ID
+        button.id = `video-btn-${index}`;  // Add unique ID
         button.setAttribute('data-video', video);
 
         // Add event listeners for both mouse and touch interactions
-        button.addEventListener('dragstart', (e) => drag(e)); // Mouse drag
-        button.addEventListener('touchstart', (e) => touchStart(e)); // Touch start
-        
+        button.addEventListener('dragstart', (e) => drag(e));  // Mouse drag
+        button.addEventListener('touchstart', (e) => touchStart(e));  // Touch start
+
         buttonsContainer.appendChild(button);
       });
     })
-    .catch(error => console.error('Error loading videos:', error));
+    .catch(error => {
+      console.error('Error loading videos:', error);
+    });
 }
+
 
 // Function to handle drag start (mouse)
 function drag(e) {
@@ -110,6 +153,7 @@ function drop(e) {
 function playVideo(videoName) {
   window.location.href = `videos.html?video=${encodeURIComponent(videoName)}`;
 }
+
 // Load video buttons on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadVideoButtons();

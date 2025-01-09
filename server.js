@@ -2,9 +2,12 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const helmet = require('helmet');
+require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 5003;
+
+console.log(`Server will run on PORT: ${PORT}`);
 
 // Serve static files from the public folder
 app.use(express.static('public'));
@@ -25,22 +28,20 @@ app.use(
 );
 
 // Endpoint to dynamically fetch video files
+app.use(express.static('public')); // This line serves static files like videos
+
 app.get('/videos', (req, res) => {
-  const videoDir = path.join(__dirname, 'public/videos');
+  const videoDir = path.join(__dirname, 'public', 'videos');
   fs.readdir(videoDir, (err, files) => {
     if (err) {
       res.status(500).send('Error reading video directory');
     } else {
-      // Log the fetched files
-      console.log('Fetched files:', files);
-
-      const videoFiles = files.filter(file => file.endsWith('.mp4'));
-      console.log('Filtered mp4 files:', videoFiles);
-
-      res.json(videoFiles);
+      const videoFiles = files.filter((file) => file.endsWith('.mp4'));
+      res.json(videoFiles); // Send the list of video files
     }
   });
 });
+
 
 // Fallback for index.html if needed
 app.get('/', (req, res) => {
