@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player</title>
+  <link rel="stylesheet" href="css/videos.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Video Player</h1>
+    
+    <!-- Modal to show the video -->
+    <div id="videoModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <video id="infoVideo">
+          <source id="videoSource" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>        
+      </div>
+    </div>
+  </div>
+  <script src="js/videos.js"></script>
+</body>
+</html>
